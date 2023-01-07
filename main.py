@@ -4,7 +4,7 @@ import random
 # GAME LOGIC
 # --------------------------------------------------------------------------
 
-# global constants
+# CREATING CONSTANTS AND VARIABLES
 MARK1 = 'O'
 MARK2 = 'X'
 
@@ -13,6 +13,7 @@ current_mark = ''
 player1 = ''
 player2 = ''
 current_player_identifier = 0
+# winning conditions
 wins = [
     [(0, 0), (0, 1), (0, 2)],
     [(1, 0), (1, 1), (1, 2)],
@@ -23,10 +24,14 @@ wins = [
     [(0, 0), (1, 1), (2, 2)],
     [(0, 2), (1, 1), (2, 0)]
 ]
+# places to mark. If it is false, user can place his mark else not
 check_table = [[False, False, False],
                 [False, False, False],
                 [False, False, False]]
+# variable to stop users form placing their marks
 game_over = False
+
+# DEFINING FUNCTIONS
 
 
 def set_initials(name1, name2):
@@ -152,7 +157,8 @@ def display_game_board(val1, val2):
 # GAME User Interface
 # --------------------------------------------------------------------------
 
-# font styles
+# UI VARIABLES AND CONSTANTS
+# fonts
 BODY = ("Arial", 16, "normal")
 HEAD = ("Courier", 20, "bold")
 GIANT = ("Arial", 50, "bold")
@@ -166,7 +172,8 @@ FG = "#bfc1c1"
 rows = {0: 0, 2: 1, 4: 2}
 cols = {1: 0, 3: 1, 5: 2}
 
-# Create a window
+# CREATE WIDGETS
+# create the window
 window = tk.Tk()
 window.title("Welcome to Tic Tac Toe")
 window.geometry("640x427")
