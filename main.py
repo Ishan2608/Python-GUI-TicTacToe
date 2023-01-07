@@ -129,7 +129,7 @@ def display_game_board(val1, val2):
     player2_name_display.config(text=f"Player2({MARK2}): {val2}")
 
     # Placing the Widgets
-    score_heading.grid(row=0, column=0, sticky="w")
+    heading.grid(row=0, column=0, sticky="w")
     player1_name_display.grid(row=1, column=0, sticky="w")
     player2_name_display.grid(row=2, column=0, sticky="w")
     turn.grid(row=3, column=0, sticky="w")
@@ -152,19 +152,26 @@ def display_game_board(val1, val2):
 # GAME User Interface
 # --------------------------------------------------------------------------
 
+# font styles
 BODY = ("Arial", 16, "normal")
 HEAD = ("Courier", 20, "bold")
 GIANT = ("Arial", 50, "bold")
+
+# placeholders in Game Grid
 PLACEHOLDER = "↓"
 PLACEHOLDER2 = "?"
 FG = "#bfc1c1"
+
+# The rows and columns of the grid and their corresponding rows and columns in a matrix
 rows = {0: 0, 2: 1, 4: 2}
 cols = {1: 0, 3: 1, 5: 2}
 
+# Create a window
 window = tk.Tk()
 window.title("Welcome to Tic Tac Toe")
 window.geometry("640x427")
 
+# Set a background randomly
 bg_image_1 = tk.PhotoImage(file="bg.png")
 bg_image_2 = tk.PhotoImage(file="bg-2.png")
 bg = [0, 1]
@@ -175,16 +182,17 @@ if choice == 0:
 else:
     canvas.create_image(0, 0, image=bg_image_2, anchor="nw")
 
+# Create A Form
 name1 = tk.Entry(width=30, font=BODY)
 name2 = tk.Entry(width=30, font=BODY)
 begin_btn = tk.Button(text="Begin", font=BODY, command=destroy_welcome)
 create_input_placeholder()
 
+# remove placeholder when user clicks inside the entry
 name1.bind('<FocusIn>', remove_input_placeholder)
 name2.bind('<FocusIn>', remove_input_placeholder)
 
 # Place the form
-
 canvas.grid(row=0, column=0, rowspan=6, columnspan=7)
 name1.grid(row=2, column=2, columnspan=3, sticky='ew')
 name2.grid(row=3, column=2, columnspan=3, sticky='ew')
@@ -192,12 +200,17 @@ begin_btn.grid(row=4, column=2, columnspan=3, sticky='ew')
 
 # Create the Game Board Widgets
 
-# left menu
-score_heading = tk.Label(text="Score Board", font=HEAD)
+# Left Menu
+# heading
+heading = tk.Label(text="Tic Tac Toe", font=HEAD)
+# player names
 player1_name_display = tk.Label(text=f"Player1: ", font=BODY)
 player2_name_display = tk.Label(text=f"Player2: ", font=BODY)
+# winner name
 winner = tk.Label(text=f"Player Wins", font=BODY)
+# show whose turn it is right now
 turn = tk.Label(text="Player1's Turn", font=BODY)
+# show status of the move or the game
 status = tk.Label(text="Status: ", font=BODY)
 
 # main game grid
@@ -218,6 +231,7 @@ middle_middle.bind("<Button-1>", place_mark)
 middle_right = tk.Button(text=PLACEHOLDER2, font=GIANT, fg=FG)
 middle_right.bind("<Button-1>", place_mark)
 
+# bottom row
 bottom_left = tk.Button(text=PLACEHOLDER2, font=GIANT, fg=FG)
 bottom_left.bind("<Button-1>", place_mark)
 bottom_middle = tk.Button(text=PLACEHOLDER2, font=GIANT, fg=FG)
@@ -225,4 +239,5 @@ bottom_middle.bind("<Button-1>", place_mark)
 bottom_right = tk.Button(text=PLACEHOLDER2, font=GIANT, fg=FG)
 bottom_right.bind("<Button-1>", place_mark)
 
+# keep the window open until the user closes it himself
 window.mainloop()
