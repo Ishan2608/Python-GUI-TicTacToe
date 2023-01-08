@@ -112,6 +112,7 @@ def create_input_placeholder():
 
 def remove_input_placeholder(event):
     event.widget.delete(0, tk.END)
+    event.widget.config(fg="black")
 
 
 def destroy_welcome():
@@ -190,8 +191,8 @@ else:
     canvas.create_image(0, 0, image=bg_image_2, anchor="nw")
 
 # Create A Form
-name1 = tk.Entry(width=30, font=BODY)
-name2 = tk.Entry(width=30, font=BODY)
+name1 = tk.Entry(width=30, font=BODY, fg="#999b9a")
+name2 = tk.Entry(width=30, font=BODY, fg="#999b9a")
 begin_btn = tk.Button(text="Begin", font=BODY, command=destroy_welcome)
 create_input_placeholder()
 
