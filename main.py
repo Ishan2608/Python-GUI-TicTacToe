@@ -155,8 +155,26 @@ def display_game_board(val1, val2):
 
 
 def reset_game():
-    pass
+    global check_table, current_mark, current_player_identifier, game_over
+    status.config(text="Status: ", fg='black')
+    game_over = False
+    check_table = [[False, False, False],
+                   [False, False, False],
+                   [False, False, False]]
+    current_player_identifier = 0
+    current_mark = change_turn()
 
+    top_left.config(text="?", fg="#bfc1c1")
+    top_middle.config(text="?", fg="#bfc1c1")
+    top_right.config(text="?", fg="#bfc1c1")
+
+    middle_left.config(text="?", fg="#bfc1c1")
+    middle_middle.config(text="?", fg="#bfc1c1")
+    middle_right.config(text="?", fg="#bfc1c1")
+
+    bottom_left.config(text="?", fg="#bfc1c1")
+    bottom_middle.config(text="?", fg="#bfc1c1")
+    bottom_right.config(text="?", fg="#bfc1c1")
 
 # --------------------------------------------------------------------------
 # GAME User Interface
