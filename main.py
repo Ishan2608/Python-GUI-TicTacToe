@@ -140,7 +140,7 @@ def display_game_board(val1, val2):
     player2_name_display.grid(row=2, column=0, sticky="w")
     turn.grid(row=3, column=0, sticky="w")
     status.grid(row=4, column=0, sticky="w")
-
+    reset_btn.grid(row=5, column=0, sticky="w")
     top_left.grid(row=0, column=1, rowspan=2, columnspan=2, sticky='nesw')
     middle_left.grid(row=2, column=1, rowspan=2, columnspan=2, sticky='nesw')
     bottom_left.grid(row=4, column=1, rowspan=2, columnspan=2, sticky='nesw')
@@ -152,6 +152,10 @@ def display_game_board(val1, val2):
     top_right.grid(row=0, column=5, rowspan=2, columnspan=2, sticky='nesw')
     middle_right.grid(row=2, column=5, rowspan=2, columnspan=2, sticky='nesw')
     bottom_right.grid(row=4, column=5, rowspan=2, columnspan=2, sticky='nesw')
+
+
+def reset_game():
+    pass
 
 
 # --------------------------------------------------------------------------
@@ -220,7 +224,8 @@ winner = tk.Label(text=f"Player Wins", font=BODY)
 turn = tk.Label(text="Player1's Turn", font=BODY)
 # show status of the move or the game
 status = tk.Label(text="Status: ", font=BODY)
-
+# reset the whole game
+reset_btn = tk.Button(text="Reset Game", font=BODY, command=reset_game)
 # main game grid
 
 # top row
@@ -246,6 +251,7 @@ bottom_middle = tk.Button(text=PLACEHOLDER2, font=GIANT, fg=FG)
 bottom_middle.bind("<Button-1>", place_mark)
 bottom_right = tk.Button(text=PLACEHOLDER2, font=GIANT, fg=FG)
 bottom_right.bind("<Button-1>", place_mark)
+
 
 # keep the window open until the user closes it himself
 window.mainloop()
