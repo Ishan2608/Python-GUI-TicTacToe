@@ -131,6 +131,7 @@ def destroy_welcome():
 
 
 def display_game_board(val1, val2):
+    global grid_buttons
     player1_name_display.config(text=f"Player1({MARK1}): {val1}")
     player2_name_display.config(text=f"Player2({MARK2}): {val2}")
 
@@ -141,21 +142,14 @@ def display_game_board(val1, val2):
     turn.grid(row=3, column=0, sticky="w")
     status.grid(row=4, column=0, sticky="w")
     reset_btn.grid(row=5, column=0, sticky="w")
-    top_left.grid(row=0, column=1, rowspan=2, columnspan=2, sticky='nesw')
-    middle_left.grid(row=2, column=1, rowspan=2, columnspan=2, sticky='nesw')
-    bottom_left.grid(row=4, column=1, rowspan=2, columnspan=2, sticky='nesw')
 
-    top_middle.grid(row=0, column=3, rowspan=2, columnspan=2, sticky='nesw')
-    middle_middle.grid(row=2, column=3, rowspan=2, columnspan=2, sticky='nesw')
-    bottom_middle.grid(row=4, column=3, rowspan=2, columnspan=2, sticky='nesw')
-
-    top_right.grid(row=0, column=5, rowspan=2, columnspan=2, sticky='nesw')
-    middle_right.grid(row=2, column=5, rowspan=2, columnspan=2, sticky='nesw')
-    bottom_right.grid(row=4, column=5, rowspan=2, columnspan=2, sticky='nesw')
+    for btn in grid_buttons:
+        current = grid_buttons[btn]['btn']
+        current.grid(row=grid_buttons[btn]['row'], column=grid_buttons[btn]['col'], rowspan=2, columnspan=2, sticky='nesw')
 
 
 def reset_game():
-    global check_table, current_mark, current_player_identifier, game_over
+    global check_table, current_mark, current_player_identifier, game_over, grid_buttons
     status.config(text="Status: ", fg='black')
     game_over = False
     check_table = [[False, False, False],
@@ -164,17 +158,9 @@ def reset_game():
     current_player_identifier = 0
     current_mark = change_turn()
 
-    top_left.config(text="?", fg="#bfc1c1")
-    top_middle.config(text="?", fg="#bfc1c1")
-    top_right.config(text="?", fg="#bfc1c1")
+    for btn in grid_buttons:
+        grid_buttons[btn]['btn'].config(text="?", fg="#bfc1c1")
 
-    middle_left.config(text="?", fg="#bfc1c1")
-    middle_middle.config(text="?", fg="#bfc1c1")
-    middle_right.config(text="?", fg="#bfc1c1")
-
-    bottom_left.config(text="?", fg="#bfc1c1")
-    bottom_middle.config(text="?", fg="#bfc1c1")
-    bottom_right.config(text="?", fg="#bfc1c1")
 
 # --------------------------------------------------------------------------
 # GAME User Interface
@@ -270,6 +256,17 @@ bottom_middle.bind("<Button-1>", place_mark)
 bottom_right = tk.Button(text=PLACEHOLDER2, font=GIANT, fg=FG)
 bottom_right.bind("<Button-1>", place_mark)
 
+grid_buttons = {
+    "top_left": {'btn': top_left, 'row': 0, 'col': 1},
+    "top_middle": {'btn': top_middle, 'row': 0, 'col': 3},
+    "top_right": {'btn': top_right, 'row': 0, 'col': 5},
+    "middle_left": {'btn': middle_left, 'row': 2, 'col': 1},
+    "middle_middle": {'btn': middle_middle, 'row': 2, 'col': 3},
+    "middle_right": {'btn': middle_right, 'row': 2, 'col': 5},
+    "bottom_left": {'btn': bottom_left, 'row': 4, 'col': 1},
+    "bottom_middle": {'btn': bottom_middle, 'row': 4, 'col': 3},
+    "bottom_right": {'btn': bottom_right, 'row': 4, 'col': 5},
+}
 
 # keep the window open until the user closes it himself
 window.mainloop()
