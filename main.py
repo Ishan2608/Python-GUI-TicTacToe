@@ -106,8 +106,8 @@ def display_winner(winner):
 
 
 def create_input_placeholder():
-    name1.insert(0, 'Enter Name of Player 1')
-    name2.insert(0, 'Enter Name of Player 2')
+    name_entry1.insert(0, 'Enter Name of Player 1')
+    name_entry2.insert(0, 'Enter Name of Player 2')
 
 
 def remove_input_placeholder(event):
@@ -117,12 +117,12 @@ def remove_input_placeholder(event):
 
 def destroy_welcome():
     # extract entry values
-    val1 = name1.get()
-    val2 = name2.get()
+    val1 = name_entry1.get()
+    val2 = name_entry2.get()
 
     # remove the form widgets
-    name1.destroy()
-    name2.destroy()
+    name_entry1.destroy()
+    name_entry2.destroy()
     begin_btn.destroy()
 
     # Start the game
@@ -199,19 +199,19 @@ else:
     canvas.create_image(0, 0, image=bg_image_2, anchor="nw")
 
 # Create A Form
-name1 = tk.Entry(width=30, font=BODY, fg="#999b9a")
-name2 = tk.Entry(width=30, font=BODY, fg="#999b9a")
+name_entry1 = tk.Entry(width=30, font=BODY, fg="#999b9a")
+name_entry2 = tk.Entry(width=30, font=BODY, fg="#999b9a")
 begin_btn = tk.Button(text="Begin", font=BODY, command=destroy_welcome)
 create_input_placeholder()
 
 # remove placeholder when user clicks inside the entry
-name1.bind('<FocusIn>', remove_input_placeholder)
-name2.bind('<FocusIn>', remove_input_placeholder)
+name_entry1.bind('<FocusIn>', remove_input_placeholder)
+name_entry2.bind('<FocusIn>', remove_input_placeholder)
 
 # Place the form
 canvas.grid(row=0, column=0, rowspan=6, columnspan=7)
-name1.grid(row=2, column=2, columnspan=3, sticky='ew')
-name2.grid(row=3, column=2, columnspan=3, sticky='ew')
+name_entry1.grid(row=2, column=2, columnspan=3, sticky='ew')
+name_entry2.grid(row=3, column=2, columnspan=3, sticky='ew')
 begin_btn.grid(row=4, column=2, columnspan=3, sticky='ew')
 
 # Create the Game Board Widgets
@@ -230,8 +230,8 @@ turn = tk.Label(text="Player1's Turn", font=BODY)
 status = tk.Label(text="Status: ", font=BODY)
 # reset the whole game
 reset_btn = tk.Button(text="Reset Game", font=BODY, command=reset_game)
-# main game grid
 
+# Right Menu: main game grid
 # top row
 top_left = tk.Button(text=PLACEHOLDER2, font=GIANT, fg=FG)
 top_left.bind("<Button-1>", place_mark)
@@ -256,6 +256,7 @@ bottom_middle.bind("<Button-1>", place_mark)
 bottom_right = tk.Button(text=PLACEHOLDER2, font=GIANT, fg=FG)
 bottom_right.bind("<Button-1>", place_mark)
 
+# create a dictionary to hold all buttons and their rows and columns
 grid_buttons = {
     "top_left": {'btn': top_left, 'row': 0, 'col': 1},
     "top_middle": {'btn': top_middle, 'row': 0, 'col': 3},
